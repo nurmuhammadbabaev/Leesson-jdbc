@@ -73,33 +73,4 @@ public class Country {
 
         return null;
     }
-
-//    public static Country printCountryAndCity() {
-//        String SQL = "SELECT * FROM city,country";
-//        try (Connection conn = connection();
-//             Statement stmt = conn.createStatement();
-//             ResultSet rs = stmt.executeQuery(SQL)) {
-//            System.out.println("id\t|\tcountry\t\t|\tarea\t\t|\tpopulation\t\t|\tage\t|");
-//            System.out.println("----+---------------+---------------+-------------------+-------+");
-//            while (rs.next()) {
-//
-//                System.out.print(rs.getInt("id") +
-//                        "\t|\t" + rs.getString("countryName") +
-//                        "\t| "+ rs.getString("countryArea")+
-//                        "\t| "+ rs.getInt("population")+
-//                        "\t\t\t| "+ rs.getInt("countryAge")+
-//                        "\t|");
-//                System.out.println(rs.getInt("id") +
-//                        "\t|\t" + rs.getString("cityName") +
-//                        "\t| "+ rs.getString("cityArea")+
-//                        "\t| "+ rs.getInt("population")+
-//                        "\t\t\t| "+ rs.getString("CountryOfThisCity")+
-//                        "\t|");
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage()); }
-//
-//        return null;
-//    }
-
 }
