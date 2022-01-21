@@ -1,8 +1,10 @@
 package com.peacksoft.db;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Country {
+
     private final static String url="jdbc:postgresql://localhost:5432/postgres";
     private final static String user="postgres";
     private final static String password="1805";
@@ -32,7 +34,7 @@ public class Country {
             System.out.println(e.getMessage());
         }
         return count; }
-    public  void addCountry(String countryName,String countryArea,int population,int countryAge){
+    public static void addCountry(String countryName,String countryArea,int population,int countryAge){
         String SQL="insert into country(countryName,countryArea,population,countryAge) values (?,?,?,?)";
         try(Connection conn=connection()) {
             PreparedStatement statement=conn.prepareStatement(SQL);
@@ -51,19 +53,53 @@ public class Country {
         try (Connection conn = connection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(SQL)) {
-            System.out.println("id\t|\tcountry\t\t|\tarea\t\t|\tpopulation\t\t|\tage\t|");
-            System.out.println("----+---------------+---------------+-------------------+-------+");
+            System.out.println("\nThis is a Country Table:");
+            System.out.println("######################################################################");
+            System.out.println("id\t|\tcountryName\t|\tcountryArea\t|\tpopulation\t\t| countryAge |");
+            System.out.println("----+---------------+---------------+-------------------+------------+");
             while (rs.next()) {
                 System.out.println(rs.getInt("id") +
                         "\t|\t" + rs.getString("countryName") +
                         "\t| "+ rs.getString("countryArea")+
                         "\t| "+ rs.getInt("population")+
-                        "\t\t\t| "+ rs.getInt("countryAge")+
-                        "\t|");
+                        "\t\t\t|\t"+ rs.getInt("countryAge")+
+                        "\t\t |");
             }
-        } catch (SQLException ex) {
+            System.out.println("######################################################################");
+
+        }
+        catch (SQLException ex) {
             System.out.println(ex.getMessage()); }
 
         return null;
     }
+
+//    public static Country printCountryAndCity() {
+//        String SQL = "SELECT * FROM city,country";
+//        try (Connection conn = connection();
+//             Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery(SQL)) {
+//            System.out.println("id\t|\tcountry\t\t|\tarea\t\t|\tpopulation\t\t|\tage\t|");
+//            System.out.println("----+---------------+---------------+-------------------+-------+");
+//            while (rs.next()) {
+//
+//                System.out.print(rs.getInt("id") +
+//                        "\t|\t" + rs.getString("countryName") +
+//                        "\t| "+ rs.getString("countryArea")+
+//                        "\t| "+ rs.getInt("population")+
+//                        "\t\t\t| "+ rs.getInt("countryAge")+
+//                        "\t|");
+//                System.out.println(rs.getInt("id") +
+//                        "\t|\t" + rs.getString("cityName") +
+//                        "\t| "+ rs.getString("cityArea")+
+//                        "\t| "+ rs.getInt("population")+
+//                        "\t\t\t| "+ rs.getString("CountryOfThisCity")+
+//                        "\t|");
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage()); }
+//
+//        return null;
+//    }
+
 }
